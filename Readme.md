@@ -23,6 +23,9 @@ IntStaticVector staticIntVector(5);
 2. Referenced https://howardhinnant.github.io/stack_alloc.html which talks about an allocator which can be used to avoid dynamic memory allocation for standard containers. (Need to look into this)
 3. The elements of the static_vector are contiguously stored and properly aligned within the static_vector object itself.
 4. static_vector doesn't explicitly throw exceptions, but relies on pre-conditions for APIs. This can eventually be enforced by concepts, but is considered UB before that. 
+5. Negative - Name is slightly confusing. What if you have a `static`, `static_vector.
+6. Negative/Neutral - Does not come with a stack specific allocator, even though that seems to be on the of primary use cases.
+7. Neutral - Unspecified behavior on the underlying type throwing exceptions during call to modifiers. 
 
 ## Getting started
 1. Download boost from https://www.boost.org/doc/libs/1_72_0/more/getting_started/unix-variants.html
