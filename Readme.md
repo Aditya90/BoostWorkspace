@@ -11,10 +11,8 @@ The static_vector container is useful when:
 5. A dynamically-resizable array is required within constexpr functions,
 6. The storage location of the static_vector elements is required to be within the static_vector object itself (e.g. to support memcopy for serialization purposes).
 
-
 ### Notes
-1. When used with `-fno-exceptions` and `-fno-rtti`, the exceptions are static assertions. 
-2. `std::bad_alloc` if you try to assign more than the capacity of the static vector
+1. `std::bad_alloc` if you try to assign more than the capacity of the static vector
 ```CPP
 using IntStaticVector = boost::container::static_vector<int, 50>;
 
@@ -22,7 +20,9 @@ IntStaticVector staticIntVector(5);
 // std::bad_alloc
 // IntStaticVector staticIntVector(51);
 ```
-3. Referenced https://howardhinnant.github.io/stack_alloc.html which talks about an allocator which can be used to avoid dynamic memory allocation for standard containers. (Need to look into this)
+2. Referenced https://howardhinnant.github.io/stack_alloc.html which talks about an allocator which can be used to avoid dynamic memory allocation for standard containers. (Need to look into this)
+3. The elements of the static_vector are contiguously stored and properly aligned within the static_vector object itself.
+4. static_vector doesn't explicitly throw exceptions, but relies on pre-conditions for APIs. This can eventually be enforced by concepts, but is considered UB before that. 
 
 ## Getting started
 1. Download boost from https://www.boost.org/doc/libs/1_72_0/more/getting_started/unix-variants.html
